@@ -125,73 +125,72 @@ p, .wp-block-paragraph {
 }
 
 /*--------------------------------------------------------------
-3.0 Header Customizations
+3.0 Header Customizations - Clean Modern Design
 --------------------------------------------------------------*/
 
-/* 3.1 Enhanced Header Layout */
+/* 3.1 Clean Header Layout */
 .wp-block-group.alignfull > .wp-block-group.alignwide {
     align-items: center;
-    padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 2rem;
+    background: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
     position: sticky;
     top: 0;
     z-index: 1000;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+    box-shadow: none;
+    min-height: 80px;
 }
 
-/* Enhanced header on scroll */
+/* Subtle shadow on scroll */
 .wp-block-group.alignfull:hover > .wp-block-group.alignwide {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* 3.2 Enhanced Site Logo */
+/* 3.2 Logo Container Fixes */
 .wp-block-site-logo {
-    margin-right: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.wp-block-site-logo:hover {
-    transform: scale(1.05);
+    margin-right: 2rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
 }
 
 .wp-block-site-logo img {
-    max-height: 50px;
+    max-height: 45px;
     width: auto;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    display: block;
+    transition: opacity 0.3s ease;
 }
 
-/* 3.3 Enhanced Site Title */
+.wp-block-site-logo:hover img {
+    opacity: 0.8;
+}
+
+/* 3.3 Clean Site Title */
 .wp-block-site-title {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
     margin: 0;
     flex-grow: 1;
+    line-height: 1.2;
 }
 
 .wp-block-site-title a {
-    color: var(--wp--preset--color--contrast);
+    color: #1a1a1a;
     text-decoration: none;
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    transition: color 0.3s ease;
 }
 
 .wp-block-site-title a:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.1);
+    color: #0066cc;
 }
 
-/* 3.4 Enhanced Navigation */
+/* 3.4 Clean Navigation */
 .wp-block-navigation {
     font-family: 'Poppins', sans-serif;
+    margin-left: auto;
 }
 
 .wp-block-navigation .wp-block-navigation__responsive-container {
@@ -199,73 +198,84 @@ p, .wp-block-paragraph {
 }
 
 .wp-block-navigation .wp-block-navigation-item {
-    margin: 0 0.25rem;
+    margin: 0 0.5rem;
 }
 
 .wp-block-navigation .wp-block-navigation-item a {
     text-decoration: none;
-    color: var(--wp--preset--color--contrast);
-    padding: 0.75rem 1.25rem;
+    color: #4a4a4a;
+    padding: 0.75rem 1rem;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.01em;
-    border-radius: 25px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    border-radius: 6px;
+    transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
     background: transparent;
-    border: 2px solid transparent;
+    border: none;
 }
 
 .wp-block-navigation .wp-block-navigation-item a:hover {
-    color: #ffffff;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.wp-block-navigation .wp-block-navigation-item a:active {
-    transform: translateY(0);
+    color: #0066cc;
+    background: #f8f9fa;
 }
 
 /* Current page indicator */
 .wp-block-navigation .wp-block-navigation-item.current-menu-item a,
 .wp-block-navigation .wp-block-navigation-item.current_page_item a {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    color: #0066cc;
+    background: #f0f7ff;
+    font-weight: 600;
 }
 
-/* Mobile menu button styling */
+/* Mobile menu button */
 .wp-block-navigation__responsive-container-open {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    border-radius: 8px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
     padding: 0.5rem;
-    color: white;
+    color: #4a4a4a;
     transition: all 0.3s ease;
 }
 
 .wp-block-navigation__responsive-container-open:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    background: #0066cc;
+    color: white;
+    border-color: #0066cc;
 }
 
 /* Mobile menu styling */
 .wp-block-navigation__responsive-container.is-menu-open {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+/* Header flex layout fix */
+.wp-block-group.alignwide {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo and title container */
+.wp-block-group.alignwide > .wp-block-group:first-child {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .wp-block-group.alignfull > .wp-block-group.alignwide {
-        padding: 1rem;
-        flex-wrap: wrap;
-        gap: 1rem;
+        padding: 1rem 1.5rem;
+        min-height: 70px;
     }
     
     .wp-block-site-title {
@@ -277,22 +287,21 @@ p, .wp-block-paragraph {
     }
     
     .wp-block-site-logo img {
-        max-height: 40px;
+        max-height: 35px;
+    }
+    
+    .wp-block-navigation .wp-block-navigation-item a {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
     }
 }
 
-/* Header animation on page load */
-@keyframes headerSlideIn {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
+@media (max-width: 480px) {
+    .wp-block-group.alignfull > .wp-block-group.alignwide {
+        padding: 1rem;
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+    
+    .wp-block-site-title {
+        font-size: 1.3rem;
     }
-}
-
-.wp-block-group.alignfull > .wp-block-group.alignwide {
-    animation: headerSlideIn 0.6s ease-out;
 }
