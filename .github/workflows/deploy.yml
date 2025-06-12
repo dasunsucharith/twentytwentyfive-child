@@ -1,9 +1,9 @@
-name: Deploy to A2 Hosting
+name: Deploy to A2 Hosting via FTP
 
 on:
   push:
     branches:
-      - main  # Or your default branch
+      - main # Or your default branch
 
 jobs:
   deploy:
@@ -12,20 +12,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to server
-        uses: appleboy/ssh-action@master
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3 # Using a specific version
         with:
-          host: ${{ secrets.A2_HOST }}
-          username: ${{ secrets.A2_USERNAME }}
-          key: ${{ secrets.A2_SSH_KEY }}
-          port: 22 # Or your SSH port if different
-          script: |
-            # Ensure the target directory exists
-            mkdir -p public_html/wp-content/themes/
-            # Deploy the child theme. -avzP are rsync options:
-            # a: archive mode (preserves permissions, ownership, timestamps, etc.)
-            # v: verbose
-            # z: compress file data during the transfer
-            # P: equivalent to --partial --progress, useful for resuming interrupted transfers
-            rsync -avzP --delete twentytwentyfive-child/ public_html/wp-content/themes/twentytwentyfive-child/
-            echo "Deployment successful!"
+          server: ${{ secrets.FTP_SERVER }} # FTP_SERVER should contain hostname e.g. ftp.example.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }} # Optional: defaults to 21 if not set.
+          local-dir: ./twentytwentyfive-child/ # Path to the local directory to upload
+          server-dir: public_html/wp-content/themes/twentytwentyfive-child/ # Path on the server
+          # Optional: clean up remote directory before uploading
+          # clean-up: true
+          # Optional: exclude specific files or directories
+          # exclude: |
+          #   **/.git*
+          #   **/.git*/**
+          #   **/node_modules/**
+
+# Note:
+# 1. The `SamKirkland/FTP-Deploy-Action` will create the `server-dir` if it doesn't exist.
+# 2. If `FTP_PORT` is not standard (21 for FTP, 990 for FTPS), ensure it's correctly set in secrets.
+#    The action's 'port' parameter defaults to 21 if not specified.
+# 3. For FTPS, you might need to set `protocol: ftps` and ensure `FTP_PORT` is the FTPS port (often 990).
+#    If your server uses implicit FTPS, the `server` might need to be prefixed, e.g., `ftps://ftp.example.com`.
+#    However, the `SamKirkland/FTP-Deploy-Action` documentation should be checked for the most up-to-date FTPS configuration.
+#    For now, this configuration assumes standard FTP. If FTPS is needed, this might require adjustment.
