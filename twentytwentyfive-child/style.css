@@ -13,3 +13,28 @@ Text Domain: twentytwentyfive-child
 */
 
 /* Add your custom CSS below */
+/* Child Theme Customizations */
+
+/* Example 1: Change blockquote border color */
+.wp-block-quote {
+    border-left-color: #0073aa; /* A distinct blue color */
+}
+
+/* Example 2: Modify paragraph font size and line height for readability */
+p {
+    font-size: 1.15rem; /* Slightly larger base font size for paragraphs */
+    line-height: 1.7;   /* Increased line height for better spacing */
+}
+
+/* Ensure site title is clearly visible if it was affected by other generic styles */
+.wp-block-site-title a {
+    color: var(--wp--preset--color--contrast); /* Use a theme variable for contrast */
+}
+
+/* Adjusting heading margins for blog posts if needed */
+.entry-content h1,
+.entry-content h2,
+.entry-content h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
