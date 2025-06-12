@@ -125,207 +125,327 @@ p, .wp-block-paragraph {
 }
 
 /*--------------------------------------------------------------
-3.0 Header Customizations - Clean Modern Design
+3.0 Custom News Website Header - Professional Design
 --------------------------------------------------------------*/
 
-/* 3.1 Clean Header Layout - Remove excess white space */
-.wp-block-group.alignfull > .wp-block-group.alignwide {
-    align-items: center;
-    padding: 0.75rem 2rem;
+/* 3.1 Main Header Container */
+.custom-news-header {
     background: #ffffff;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 2px solid #e8e8e8;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
-    box-shadow: none;
-    min-height: 60px;
-    width: 100%;
 }
 
-/* Subtle shadow on scroll */
-.wp-block-group.alignfull:hover > .wp-block-group.alignwide {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+.custom-news-header:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* 3.2 Logo Container Fixes - Prevent stretching */
-.wp-block-site-logo {
-    margin-right: 1.5rem;
-    flex-shrink: 0;
+/* 3.2 Header Inner Container */
+.header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
-    width: auto !important;
+    justify-content: space-between;
+    min-height: 70px;
 }
 
-.wp-block-site-logo img {
-    max-height: 40px !important;
-    width: auto !important;
-    height: auto !important;
-    max-width: none !important;
+/* 3.3 Logo Section */
+.header-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.header-logo {
     display: block;
+    line-height: 0;
+}
+
+.header-logo img {
+    height: 42px;
+    width: auto;
     object-fit: contain;
     transition: opacity 0.3s ease;
 }
 
-.wp-block-site-logo:hover img {
-    opacity: 0.8;
+.header-logo:hover img {
+    opacity: 0.85;
 }
 
-/* Fix for WordPress logo block width issue */
-.wp-block-site-logo .custom-logo {
-    width: auto !important;
-    height: auto !important;
-    max-height: 40px !important;
-}
-
-/* 3.3 Clean Site Title */
-.wp-block-site-title {
-    font-size: 1.5rem;
+.header-site-title {
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-decoration: none;
     letter-spacing: -0.02em;
-    margin: 0;
-    flex-grow: 1;
+    transition: color 0.3s ease;
     line-height: 1.2;
 }
 
-.wp-block-site-title a {
-    color: #1a1a1a;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.wp-block-site-title a:hover {
+.header-site-title:hover {
     color: #0066cc;
 }
 
-/* 3.4 Clean Navigation */
-.wp-block-navigation {
-    font-family: 'Poppins', sans-serif;
+/* 3.4 Navigation Section */
+.header-navigation {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
     margin-left: auto;
 }
 
-.wp-block-navigation .wp-block-navigation__responsive-container {
+.main-nav {
+    display: flex;
     align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.wp-block-navigation .wp-block-navigation-item {
-    margin: 0 0.25rem;
+.main-nav li {
+    margin: 0;
 }
 
-.wp-block-navigation .wp-block-navigation-item a {
-    text-decoration: none;
-    color: #4a4a4a;
-    padding: 0.5rem 0.75rem;
-    font-weight: 500;
+.main-nav a {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333333;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
     border-radius: 6px;
     transition: all 0.3s ease;
     position: relative;
-    background: transparent;
-    border: none;
+    letter-spacing: 0.01em;
 }
 
-.wp-block-navigation .wp-block-navigation-item a:hover {
+.main-nav a:hover {
     color: #0066cc;
-    background: #f8f9fa;
+    background: #f8fafc;
 }
 
-/* Current page indicator */
-.wp-block-navigation .wp-block-navigation-item.current-menu-item a,
-.wp-block-navigation .wp-block-navigation-item.current_page_item a {
+.main-nav a.current {
     color: #0066cc;
     background: #f0f7ff;
     font-weight: 600;
 }
 
-/* Mobile menu button */
-.wp-block-navigation__responsive-container-open {
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 6px;
+/* 3.5 Header Actions (Search, Subscribe, etc.) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-toggle {
+    background: none;
+    border: 1px solid #e0e0e0;
     padding: 0.5rem;
-    color: #4a4a4a;
+    border-radius: 6px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.search-toggle:hover {
+    border-color: #0066cc;
+    color: #0066cc;
+    background: #f8fafc;
+}
+
+.subscribe-btn {
+    background: #0066cc;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+}
+
+.subscribe-btn:hover {
+    background: #0052a3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+/* 3.6 Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid #e0e0e0;
+    padding: 0.5rem;
+    border-radius: 6px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-direction: column;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+.mobile-menu-toggle span {
+    width: 18px;
+    height: 2px;
+    background: currentColor;
     transition: all 0.3s ease;
 }
 
-.wp-block-navigation__responsive-container-open:hover {
-    background: #0066cc;
-    color: white;
+.mobile-menu-toggle:hover {
     border-color: #0066cc;
+    color: #0066cc;
 }
 
-/* Mobile menu styling */
-.wp-block-navigation__responsive-container.is-menu-open {
-    background: #ffffff;
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 1rem;
+/* 3.7 Mobile Navigation */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e8e8e8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
 }
 
-/* Header flex layout fix */
-.wp-block-group.alignwide {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Logo and title container */
-.wp-block-group.alignwide > .wp-block-group:first-child {
-    display: flex !important;
-    align-items: center !important;
-    flex-shrink: 0;
-    gap: 1.5rem;
-}
-
-/* Remove any default WordPress logo styling that might cause stretching */
-.wp-block-site-logo a {
+.mobile-nav.active {
     display: block;
-    line-height: 0;
 }
 
-/* Responsive adjustments */
+.mobile-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-nav li {
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.mobile-nav li:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav a {
+    display: block;
+    padding: 0.75rem 0;
+    color: #333;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    color: #0066cc;
+}
+
+/* 3.8 Responsive Design */
 @media (max-width: 768px) {
-    .wp-block-group.alignfull > .wp-block-group.alignwide {
-        padding: 0.75rem 1rem;
-        min-height: 55px;
+    .header-inner {
+        padding: 0 1rem;
+        min-height: 60px;
     }
     
-    .wp-block-site-title {
-        font-size: 1.3rem;
+    .header-site-title {
+        font-size: 1.4rem;
     }
     
-    .wp-block-site-logo {
-        margin-right: 1rem;
+    .header-logo img {
+        height: 36px;
     }
     
-    .wp-block-site-logo img {
-        max-height: 35px !important;
+    .main-nav {
+        display: none;
     }
     
-    .wp-block-navigation .wp-block-navigation-item a {
-        padding: 0.4rem 0.6rem;
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .header-actions .search-toggle {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .subscribe-btn {
+        padding: 0.5rem 1rem;
         font-size: 0.85rem;
     }
 }
 
 @media (max-width: 480px) {
-    .wp-block-group.alignfull > .wp-block-group.alignwide {
-        padding: 0.5rem 1rem;
-        min-height: 50px;
+    .header-inner {
+        padding: 0 1rem;
     }
     
-    .wp-block-site-title {
+    .header-logo-section {
+        gap: 0.75rem;
+    }
+    
+    .header-site-title {
         font-size: 1.2rem;
     }
     
-    .wp-block-site-logo img {
-        max-height: 30px !important;
+    .header-logo img {
+        height: 32px;
     }
+    
+    .subscribe-btn {
+        display: none;
+    }
+}
+
+/* 3.9 Override WordPress Default Styles */
+.wp-block-group.alignfull .custom-news-header,
+.wp-block-group.alignwide .header-inner {
+    all: unset;
+    display: flex;
+}
+
+.custom-news-header .wp-block-site-logo,
+.custom-news-header .wp-block-site-title,
+.custom-news-header .wp-block-navigation {
+    display: none;
+}
+
+/* 3.10 News-specific styling touches */
+.header-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 400;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid #e0e0e0;
+}
+
+/* Add breaking news ticker space if needed */
+.breaking-news-space {
+    height: 35px;
+    background: #ff4444;
+    color: white;
+    display: none; /* Show when needed */
 }
