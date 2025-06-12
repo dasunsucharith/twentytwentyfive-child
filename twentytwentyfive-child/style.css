@@ -12,29 +12,101 @@ Tags: light, dark, two-columns, right-sidebar, responsive-layout, accessibility-
 Text Domain: twentytwentyfive-child
 */
 
-/* Add your custom CSS below */
-/* Child Theme Customizations */
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 General Child Theme Customizations
+    1.1 Example Blockquote
+    1.2 Example Paragraph
+    1.3 Example Site Title Link
+    1.4 Example Heading Margins
+2.0 Header Customizations
+    2.1 Header Layout
+    2.2 Site Logo
+    2.3 Site Title
+    2.4 Navigation
+3.0 Custom Typography
+    3.1 Headings Font
+--------------------------------------------------------------*/
 
-/* Example 1: Change blockquote border color */
+/* Add your custom CSS below */
+/* 1.0 General Child Theme Customizations */
+
+/* 1.1 Example Blockquote */
 .wp-block-quote {
     border-left-color: #0073aa; /* A distinct blue color */
 }
 
-/* Example 2: Modify paragraph font size and line height for readability */
+/* 1.2 Example Paragraph */
 p {
     font-size: 1.15rem; /* Slightly larger base font size for paragraphs */
     line-height: 1.7;   /* Increased line height for better spacing */
 }
 
-/* Ensure site title is clearly visible if it was affected by other generic styles */
+/* 1.3 Example Site Title Link */
 .wp-block-site-title a {
     color: var(--wp--preset--color--contrast); /* Use a theme variable for contrast */
 }
 
-/* Adjusting heading margins for blog posts if needed */
+/* 1.4 Example Heading Margins */
 .entry-content h1,
 .entry-content h2,
 .entry-content h3 {
     margin-top: 1.5em;
     margin-bottom: 0.5em;
+}
+
+/*--------------------------------------------------------------
+2.0 Header Customizations
+--------------------------------------------------------------*/
+
+/* 2.1 Header Layout */
+/* Ensure header elements like logo and site title are aligned nicely */
+.wp-block-group.alignwide > .wp-block-group { /* This targets the inner group holding site title and nav */
+    align-items: center; /* Vertically align items if it's a flex container */
+}
+
+/* 2.2 Site Logo */
+/* Style the site logo */
+.wp-block-site-logo img {
+    max-height: 60px; /* Adjust as needed */
+    width: auto;
+    margin-right: 15px; /* Space between logo and site title */
+}
+
+/* 2.3 Site Title */
+/* Site title adjustments if needed (ensure it aligns well with a logo) */
+.wp-block-site-title {
+    font-size: var(--wp--preset--font-size--x-large); /* Example: use a theme variable */
+}
+
+/* 2.4 Navigation */
+/* Basic styling for navigation links */
+.wp-block-navigation .wp-block-navigation-item a {
+    text-decoration: none;
+    color: var(--wp--preset--color--contrast);
+    padding: 0.5em 1em;
+    font-weight: 500;
+}
+
+.wp-block-navigation .wp-block-navigation-item a:hover {
+    color: var(--wp--preset--color--primary); /* Assuming 'primary' is defined, or use a specific color */
+    background-color: var(--wp--preset--color--base-2); /* Assuming 'base-2' is defined for a subtle hover */
+}
+
+/* Adjust spacing for the main header group if necessary */
+.wp-block-group.alignfull > .wp-block-group > .wp-block-group.alignwide {
+    padding-top: var(--wp--preset--spacing--20); /* Adjust spacing if default is too much/little */
+    padding-bottom: var(--wp--preset--spacing--20);
+}
+
+/*--------------------------------------------------------------
+3.0 Custom Typography
+--------------------------------------------------------------*/
+
+/* 3.1 Headings Font */
+h1, h2, h3,
+.wp-block-post-title { /* Target post titles specifically too */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700; /* Default to bold for headings */
 }
