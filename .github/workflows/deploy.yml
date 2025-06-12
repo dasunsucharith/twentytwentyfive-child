@@ -1,1 +1,31 @@
+name: Deploy to A2 Hosting
 
+on:
+  push:
+    branches:
+      - main  # Or your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.A2_HOST }}
+          username: ${{ secrets.A2_USERNAME }}
+          key: ${{ secrets.A2_SSH_KEY }}
+          port: 22 # Or your SSH port if different
+          script: |
+            # Ensure the target directory exists
+            mkdir -p public_html/wp-content/themes/
+            # Deploy the child theme. -avzP are rsync options:
+            # a: archive mode (preserves permissions, ownership, timestamps, etc.)
+            # v: verbose
+            # z: compress file data during the transfer
+            # P: equivalent to --partial --progress, useful for resuming interrupted transfers
+            rsync -avzP --delete twentytwentyfive-child/ public_html/wp-content/themes/twentytwentyfive-child/
+            echo "Deployment successful!"
