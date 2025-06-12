@@ -128,10 +128,10 @@ p, .wp-block-paragraph {
 3.0 Header Customizations - Clean Modern Design
 --------------------------------------------------------------*/
 
-/* 3.1 Clean Header Layout */
+/* 3.1 Clean Header Layout - Remove excess white space */
 .wp-block-group.alignfull > .wp-block-group.alignwide {
     align-items: center;
-    padding: 1.5rem 2rem;
+    padding: 0.75rem 2rem;
     background: #ffffff;
     border-bottom: 1px solid #f0f0f0;
     position: sticky;
@@ -139,7 +139,8 @@ p, .wp-block-paragraph {
     z-index: 1000;
     transition: all 0.3s ease;
     box-shadow: none;
-    min-height: 80px;
+    min-height: 60px;
+    width: 100%;
 }
 
 /* Subtle shadow on scroll */
@@ -147,18 +148,22 @@ p, .wp-block-paragraph {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* 3.2 Logo Container Fixes */
+/* 3.2 Logo Container Fixes - Prevent stretching */
 .wp-block-site-logo {
-    margin-right: 2rem;
+    margin-right: 1.5rem;
     flex-shrink: 0;
     display: flex;
     align-items: center;
+    width: auto !important;
 }
 
 .wp-block-site-logo img {
-    max-height: 45px;
-    width: auto;
+    max-height: 40px !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
     display: block;
+    object-fit: contain;
     transition: opacity 0.3s ease;
 }
 
@@ -166,9 +171,16 @@ p, .wp-block-paragraph {
     opacity: 0.8;
 }
 
+/* Fix for WordPress logo block width issue */
+.wp-block-site-logo .custom-logo {
+    width: auto !important;
+    height: auto !important;
+    max-height: 40px !important;
+}
+
 /* 3.3 Clean Site Title */
 .wp-block-site-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -198,16 +210,16 @@ p, .wp-block-paragraph {
 }
 
 .wp-block-navigation .wp-block-navigation-item {
-    margin: 0 0.5rem;
+    margin: 0 0.25rem;
 }
 
 .wp-block-navigation .wp-block-navigation-item a {
     text-decoration: none;
     color: #4a4a4a;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     letter-spacing: 0.02em;
     border-radius: 6px;
     transition: all 0.3s ease;
@@ -269,17 +281,24 @@ p, .wp-block-paragraph {
     display: flex !important;
     align-items: center !important;
     flex-shrink: 0;
+    gap: 1.5rem;
+}
+
+/* Remove any default WordPress logo styling that might cause stretching */
+.wp-block-site-logo a {
+    display: block;
+    line-height: 0;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .wp-block-group.alignfull > .wp-block-group.alignwide {
-        padding: 1rem 1.5rem;
-        min-height: 70px;
+        padding: 0.75rem 1rem;
+        min-height: 55px;
     }
     
     .wp-block-site-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .wp-block-site-logo {
@@ -287,21 +306,26 @@ p, .wp-block-paragraph {
     }
     
     .wp-block-site-logo img {
-        max-height: 35px;
+        max-height: 35px !important;
     }
     
     .wp-block-navigation .wp-block-navigation-item a {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 480px) {
     .wp-block-group.alignfull > .wp-block-group.alignwide {
-        padding: 1rem;
+        padding: 0.5rem 1rem;
+        min-height: 50px;
     }
     
     .wp-block-site-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+    }
+    
+    .wp-block-site-logo img {
+        max-height: 30px !important;
     }
 }
