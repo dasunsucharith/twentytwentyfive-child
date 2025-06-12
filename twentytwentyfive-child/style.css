@@ -15,40 +15,108 @@ Text Domain: twentytwentyfive-child
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-1.0 General Child Theme Customizations
-    1.1 Example Blockquote
-    1.2 Example Paragraph
-    1.3 Example Site Title Link
-    1.4 Example Heading Margins
-2.0 Header Customizations
-    2.1 Header Layout
-    2.2 Site Logo
-    2.3 Site Title
-    2.4 Navigation
-3.0 Custom Typography
-    3.1 Headings Font
+1.0 Global Font Setup
+2.0 General Child Theme Customizations
+    2.1 Example Blockquote
+    2.2 Example Paragraph
+    2.3 Example Site Title Link
+    2.4 Example Heading Margins
+3.0 Header Customizations
+    3.1 Header Layout
+    3.2 Site Logo
+    3.3 Site Title
+    3.4 Navigation
 --------------------------------------------------------------*/
 
-/* Add your custom CSS below */
-/* 1.0 General Child Theme Customizations */
+/*--------------------------------------------------------------
+1.0 Global Font Setup
+--------------------------------------------------------------*/
 
-/* 1.1 Example Blockquote */
+/* Apply Poppins font to the entire theme for clean, modern look */
+body,
+html,
+* {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+/* Specific targeting for WordPress blocks and elements */
+.wp-site-blocks,
+.wp-block-group,
+.wp-block-post-content,
+.entry-content,
+.wp-block-navigation,
+.wp-block-site-title,
+.wp-block-paragraph,
+.wp-block-heading,
+.wp-block-list,
+.wp-block-quote,
+.wp-block-buttons,
+.wp-block-button,
+input,
+textarea,
+select,
+button {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+/* Headings with different weights for modern hierarchy */
+h1, .wp-block-post-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em; /* Tighter spacing for modern look */
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+/* Body text optimized for readability */
+p, .wp-block-paragraph {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    letter-spacing: 0.01em; /* Slight spacing for clarity */
+}
+
+/* Navigation and UI elements with medium weight for clean appearance */
+.wp-block-navigation .wp-block-navigation-item a,
+.wp-block-site-title a,
+.wp-block-button__link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/*--------------------------------------------------------------
+2.0 General Child Theme Customizations
+--------------------------------------------------------------*/
+
+/* 2.1 Example Blockquote */
 .wp-block-quote {
-    border-left-color: #0073aa; /* A distinct blue color */
+    border-left-color: #0073aa;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-style: normal; /* Poppins looks better without italic */
+    font-size: 1.2rem;
+    letter-spacing: 0.01em;
 }
 
-/* 1.2 Example Paragraph */
-p {
-    font-size: 1.15rem; /* Slightly larger base font size for paragraphs */
-    line-height: 1.7;   /* Increased line height for better spacing */
-}
+/* 2.2 Example Paragraph (already styled above in global section) */
 
-/* 1.3 Example Site Title Link */
+/* 2.3 Example Site Title Link */
 .wp-block-site-title a {
-    color: var(--wp--preset--color--contrast); /* Use a theme variable for contrast */
+    color: var(--wp--preset--color--contrast);
 }
 
-/* 1.4 Example Heading Margins */
+/* 2.4 Example Heading Margins */
 .entry-content h1,
 .entry-content h2,
 .entry-content h3 {
@@ -57,56 +125,47 @@ p {
 }
 
 /*--------------------------------------------------------------
-2.0 Header Customizations
+3.0 Header Customizations
 --------------------------------------------------------------*/
 
-/* 2.1 Header Layout */
-/* Ensure header elements like logo and site title are aligned nicely */
-.wp-block-group.alignwide > .wp-block-group { /* This targets the inner group holding site title and nav */
-    align-items: center; /* Vertically align items if it's a flex container */
+/* 3.1 Header Layout */
+.wp-block-group.alignwide > .wp-block-group {
+    align-items: center;
 }
 
-/* 2.2 Site Logo */
-/* Style the site logo */
+/* 3.2 Site Logo */
 .wp-block-site-logo img {
-    max-height: 60px; /* Adjust as needed */
+    max-height: 60px;
     width: auto;
-    margin-right: 15px; /* Space between logo and site title */
+    margin-right: 15px;
 }
 
-/* 2.3 Site Title */
-/* Site title adjustments if needed (ensure it aligns well with a logo) */
+/* 3.3 Site Title */
 .wp-block-site-title {
-    font-size: var(--wp--preset--font-size--x-large); /* Example: use a theme variable */
+    font-size: var(--wp--preset--font-size--x-large);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
-/* 2.4 Navigation */
-/* Basic styling for navigation links */
+/* 3.4 Navigation */
 .wp-block-navigation .wp-block-navigation-item a {
     text-decoration: none;
     color: var(--wp--preset--color--contrast);
     padding: 0.5em 1em;
     font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.01em;
+    transition: all 0.2s ease; /* Smooth transition for modern feel */
 }
 
 .wp-block-navigation .wp-block-navigation-item a:hover {
-    color: var(--wp--preset--color--primary); /* Assuming 'primary' is defined, or use a specific color */
-    background-color: var(--wp--preset--color--base-2); /* Assuming 'base-2' is defined for a subtle hover */
+    color: var(--wp--preset--color--primary);
+    background-color: var(--wp--preset--color--base-2);
 }
 
 /* Adjust spacing for the main header group if necessary */
 .wp-block-group.alignfull > .wp-block-group > .wp-block-group.alignwide {
-    padding-top: var(--wp--preset--spacing--20); /* Adjust spacing if default is too much/little */
+    padding-top: var(--wp--preset--spacing--20);
     padding-bottom: var(--wp--preset--spacing--20);
-}
-
-/*--------------------------------------------------------------
-3.0 Custom Typography
---------------------------------------------------------------*/
-
-/* 3.1 Headings Font */
-h1, h2, h3,
-.wp-block-post-title { /* Target post titles specifically too */
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700; /* Default to bold for headings */
 }
