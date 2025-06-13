@@ -1,177 +1,253 @@
 /*
-Theme Name: Twenty Twenty-Five Child
+Theme Name: Twenty Twenty-Five Child - Modern News
 Theme URI: https://example.com/twentytwentyfive-child/
-Description: A child theme for Twenty Twenty-Five.
+Description: A modern, fast, and clean child theme for news websites. Built with performance and accessibility in mind.
 Author: Your Name
 Author URI: https://example.com
 Template: twentytwentyfive
-Version: 1.0.0
+Version: 2.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+Tags: news, modern, clean, fast, responsive, accessibility-ready, performance-optimized
 Text Domain: twentytwentyfive-child
 */
 
 /*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
+>>> MODERN NEWS THEME - TABLE OF CONTENTS:
 ----------------------------------------------------------------
-1.0 Global Font Setup
-2.0 General Child Theme Customizations
-    2.1 Example Blockquote
-    2.2 Example Paragraph
-    2.3 Example Site Title Link
-    2.4 Example Heading Margins
-3.0 Header Customizations
-    3.1 Header Layout
-    3.2 Site Logo
-    3.3 Site Title
-    3.4 Navigation
+1.0 Design System Imports
+2.0 Global Resets & Base Styles
+3.0 WordPress Block Overrides
+4.0 Header & Navigation
+5.0 Content Areas
+6.0 Sidebar & Widgets
+7.0 Footer
+8.0 Performance Optimizations
+9.0 Responsive Design
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-1.0 Global Font Setup
+1.0 Design System Imports
 --------------------------------------------------------------*/
 
-/* Apply Poppins font to the entire theme for clean, modern look */
-body,
-html,
-* {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+/* Import our design system */
+@import url('assets/css/design-system.css');
+@import url('assets/css/components.css');
+
+/*--------------------------------------------------------------
+2.0 Global Resets & Base Styles
+--------------------------------------------------------------*/
+
+/* Enhanced box-sizing and smooth scrolling */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-/* Specific targeting for WordPress blocks and elements */
-.wp-site-blocks,
-.wp-block-group,
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Account for sticky header */
+}
+
+body {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improved focus styles for accessibility */
+*:focus {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+}
+
+/* Remove default margins and improve consistency */
+h1, h2, h3, h4, h5, h6, p, blockquote, figure, ul, ol, dl, dd {
+    margin: 0 0 var(--space-4) 0;
+}
+
+/* Images and media */
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* Native lazy loading */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded,
+img:not([loading="lazy"]) {
+    opacity: 1;
+}
+
+/*--------------------------------------------------------------
+3.0 WordPress Block Overrides
+--------------------------------------------------------------*/
+
+/* Apply design system to WordPress blocks */
+.wp-site-blocks {
+    font-family: var(--font-family-primary);
+}
+
+/* Post Title */
+.wp-block-post-title,
+.entry-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-6);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+/* Post Content */
 .wp-block-post-content,
-.entry-content,
-.wp-block-navigation,
-.wp-block-site-title,
-.wp-block-paragraph,
-.wp-block-heading,
-.wp-block-list,
-.wp-block-quote,
-.wp-block-buttons,
-.wp-block-button,
-input,
-textarea,
-select,
-button {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+.entry-content {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
 }
 
-/* Headings with different weights for modern hierarchy */
-h1, .wp-block-post-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.02em; /* Tighter spacing for modern look */
+/* Featured Image */
+.wp-block-post-featured-image {
+    margin-bottom: var(--space-8);
 }
 
-h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+.wp-block-post-featured-image img {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-base);
 }
 
-h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+/* Post Meta */
+.wp-block-post-author,
+.wp-block-post-date,
+.wp-block-post-terms {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-medium);
 }
 
-/* Body text optimized for readability */
-p, .wp-block-paragraph {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    letter-spacing: 0.01em; /* Slight spacing for clarity */
+.wp-block-post-author__name,
+.wp-block-post-date__link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
 }
 
-/* Navigation and UI elements with medium weight for clean appearance */
-.wp-block-navigation .wp-block-navigation-item a,
-.wp-block-site-title a,
-.wp-block-button__link {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.02em;
+.wp-block-post-author__name:hover,
+.wp-block-post-date__link:hover {
+    color: var(--color-primary-600);
 }
 
-/*--------------------------------------------------------------
-2.0 General Child Theme Customizations
---------------------------------------------------------------*/
-
-/* 2.1 Example Blockquote */
+/* Blockquotes */
 .wp-block-quote {
-    border-left-color: #0073aa;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-style: normal; /* Poppins looks better without italic */
-    font-size: 1.2rem;
-    letter-spacing: 0.01em;
+    border-left: 4px solid var(--color-primary-500);
+    padding-left: var(--space-6);
+    margin: var(--space-8) 0;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+    font-style: normal;
 }
 
-/* 2.2 Example Paragraph (already styled above in global section) */
-
-/* 2.3 Example Site Title Link */
-.wp-block-site-title a {
-    color: var(--wp--preset--color--contrast);
+.wp-block-quote cite {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-medium);
+    display: block;
+    margin-top: var(--space-2);
 }
 
-/* 2.4 Example Heading Margins */
-.entry-content h1,
-.entry-content h2,
-.entry-content h3 {
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+/* Lists */
+.wp-block-list {
+    padding-left: var(--space-6);
+}
+
+.wp-block-list li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Buttons */
+.wp-block-button__link {
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    display: inline-block;
+}
+
+.wp-block-button .wp-block-button__link {
+    background-color: var(--color-primary-600);
+    color: var(--color-white);
+}
+
+.wp-block-button .wp-block-button__link:hover {
+    background-color: var(--color-primary-700);
+    transform: translateY(-1px);
+}
+
+/* Separator */
+.wp-block-separator {
+    border: none;
+    border-top: 2px solid var(--color-border-light);
+    margin: var(--space-12) 0;
 }
 
 /*--------------------------------------------------------------
-3.0 Custom News Website Header - Professional Design
+4.0 Header & Navigation
 --------------------------------------------------------------*/
 
-/* 3.1 Main Header Container */
 .custom-news-header {
-    background: #ffffff;
-    border-bottom: 2px solid #e8e8e8;
+    background: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border-light);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-base);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
-.custom-news-header:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Enhanced sticky header behavior */
+.custom-news-header.header-hidden {
+    transform: translateY(-100%);
 }
 
-/* 3.2 Header Inner Container */
 .header-inner {
-    max-width: 1400px;
+    max-width: var(--full-width);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--space-6);
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 70px;
 }
 
-/* 3.3 Logo Section */
+/* Logo Section */
 .header-logo-section {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-4);
     flex-shrink: 0;
-}
-
-.header-logo {
-    display: block;
-    line-height: 0;
 }
 
 .header-logo img {
     height: 42px;
     width: auto;
     object-fit: contain;
-    transition: opacity 0.3s ease;
+    transition: var(--transition-fast);
 }
 
 .header-logo:hover img {
@@ -179,80 +255,71 @@ p, .wp-block-paragraph {
 }
 
 .header-site-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #1a1a1a;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
     text-decoration: none;
-    letter-spacing: -0.02em;
-    transition: color 0.3s ease;
-    line-height: 1.2;
+    letter-spacing: var(--letter-spacing-tight);
+    transition: var(--transition-fast);
 }
 
 .header-site-title:hover {
-    color: #0066cc;
+    color: var(--color-primary-600);
 }
 
-/* 3.4 Navigation Section */
+/* Navigation */
 .header-navigation {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: var(--space-8);
     margin-left: auto;
 }
 
 .main-nav {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-2);
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.main-nav li {
-    margin: 0;
-}
-
 .main-nav a {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #333333;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
     text-decoration: none;
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    position: relative;
-    letter-spacing: 0.01em;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-base);
+    transition: var(--transition-fast);
+    letter-spacing: var(--letter-spacing-wide);
 }
 
-.main-nav a:hover {
-    color: #0066cc;
-    background: #f8fafc;
+.main-nav a:hover,
+.main-nav a.current {
+    color: var(--color-primary-600);
+    background: var(--color-bg-accent);
 }
 
 .main-nav a.current {
-    color: #0066cc;
-    background: #f0f7ff;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
 }
 
-/* 3.5 Header Actions (Search, Subscribe, etc.) */
+/* Header Actions */
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-3);
 }
 
 .search-toggle {
     background: none;
-    border: 1px solid #e0e0e0;
-    padding: 0.5rem;
-    border-radius: 6px;
-    color: #666;
+    border: 1px solid var(--color-border-medium);
+    padding: var(--space-2);
+    border-radius: var(--radius-base);
+    color: var(--color-text-tertiary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -261,42 +328,42 @@ p, .wp-block-paragraph {
 }
 
 .search-toggle:hover {
-    border-color: #0066cc;
-    color: #0066cc;
-    background: #f8fafc;
+    border-color: var(--color-primary-500);
+    color: var(--color-primary-600);
+    background: var(--color-bg-accent);
 }
 
 .subscribe-btn {
-    background: #0066cc;
-    color: white;
+    background: var(--color-primary-600);
+    color: var(--color-white);
     border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-base);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
     cursor: pointer;
-    letter-spacing: 0.01em;
+    letter-spacing: var(--letter-spacing-wide);
 }
 
 .subscribe-btn:hover {
-    background: #0052a3;
+    background: var(--color-primary-700);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    box-shadow: var(--shadow-md);
 }
 
-/* 3.6 Mobile Menu Toggle */
+/* Mobile Menu */
 .mobile-menu-toggle {
     display: none;
     background: none;
-    border: 1px solid #e0e0e0;
-    padding: 0.5rem;
-    border-radius: 6px;
-    color: #666;
+    border: 1px solid var(--color-border-medium);
+    padding: var(--space-2);
+    border-radius: var(--radius-base);
+    color: var(--color-text-tertiary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
     flex-direction: column;
     width: 36px;
     height: 36px;
@@ -309,25 +376,34 @@ p, .wp-block-paragraph {
     width: 18px;
     height: 2px;
     background: currentColor;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
+    border-radius: 1px;
 }
 
-.mobile-menu-toggle:hover {
-    border-color: #0066cc;
-    color: #0066cc;
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
 }
 
-/* 3.7 Mobile Navigation */
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+}
+
 .mobile-nav {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
-    border-top: 1px solid #e8e8e8;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 1rem 2rem;
+    background: var(--color-bg-primary);
+    border-top: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .mobile-nav.active {
@@ -341,7 +417,7 @@ p, .wp-block-paragraph {
 }
 
 .mobile-nav li {
-    border-bottom: 1px solid #f5f5f5;
+    border-bottom: 1px solid var(--color-border-light);
 }
 
 .mobile-nav li:last-child {
@@ -350,31 +426,390 @@ p, .wp-block-paragraph {
 
 .mobile-nav a {
     display: block;
-    padding: 0.75rem 0;
-    color: #333;
+    padding: var(--space-4) 0;
+    color: var(--color-text-primary);
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    font-weight: var(--font-weight-medium);
+    transition: var(--transition-fast);
 }
 
 .mobile-nav a:hover {
-    color: #0066cc;
+    color: var(--color-primary-600);
 }
 
-/* 3.8 Responsive Design */
-@media (max-width: 768px) {
+/* Mobile menu open state */
+.mobile-menu-open {
+    overflow: hidden;
+}
+
+/*--------------------------------------------------------------
+5.0 Content Areas
+--------------------------------------------------------------*/
+
+/* Main Content Area */
+.site-main {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6);
+}
+
+/* Wide Content */
+.alignwide {
+    max-width: var(--wide-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Full Width */
+.alignfull {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+/* Article Content */
+.article-content {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-4);
+}
+
+.article-content h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.article-content h3 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.article-content p {
+    margin-bottom: var(--space-6);
+}
+
+.article-content img {
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-base);
+    margin: var(--space-8) 0;
+}
+
+/* Homepage Grid */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-8);
+    margin: var(--space-12) 0;
+}
+
+/*--------------------------------------------------------------
+6.0 Sidebar & Widgets
+--------------------------------------------------------------*/
+
+.sidebar {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: var(--space-6);
+}
+
+.widget {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin-bottom: var(--space-8);
+    border: 1px solid var(--color-border-light);
+}
+
+.widget-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 2px solid var(--color-primary-500);
+}
+
+.widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget li {
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.widget li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.widget a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: var(--transition-fast);
+}
+
+.widget a:hover {
+    color: var(--color-primary-600);
+}
+
+/*--------------------------------------------------------------
+7.0 Footer
+--------------------------------------------------------------*/
+
+.site-footer {
+    background: var(--color-gray-900);
+    color: var(--color-text-inverse);
+    padding: var(--space-16) 0 var(--space-8) 0;
+    margin-top: var(--space-20);
+}
+
+.footer-content {
+    max-width: var(--full-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+.footer-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+}
+
+.footer-widget {
+    color: var(--color-text-inverse);
+}
+
+.footer-widget-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+    color: var(--color-white);
+}
+
+.footer-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-widget li {
+    margin-bottom: var(--space-2);
+}
+
+.footer-widget a {
+    color: var(--color-gray-300);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.footer-widget a:hover {
+    color: var(--color-white);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--color-gray-700);
+    padding-top: var(--space-8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-400);
+}
+
+.footer-bottom a {
+    color: var(--color-gray-300);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.footer-bottom a:hover {
+    color: var(--color-white);
+}
+
+/*--------------------------------------------------------------
+8.0 Performance Optimizations
+--------------------------------------------------------------*/
+
+/* Optimize font loading */
+@font-face {
+    font-family: 'Poppins';
+    font-display: swap;
+    font-style: normal;
+    font-weight: 300 700;
+    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .breaking-news-banner::before {
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --color-text-primary: #000000;
+        --color-text-secondary: #000000;
+        --color-bg-primary: #ffffff;
+        --color-border-light: #000000;
+        --color-border-medium: #000000;
+        --shadow-base: none;
+        --shadow-sm: none;
+        --shadow-md: none;
+    }
+    
+    .article-card,
+    .widget,
+    .custom-news-header {
+        border: 2px solid #000000;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg-primary: #1f2937;
+        --color-bg-secondary: #374151;
+        --color-bg-tertiary: #4b5563;
+        --color-text-primary: #f9fafb;
+        --color-text-secondary: #e5e7eb;
+        --color-text-tertiary: #d1d5db;
+        --color-border-light: #4b5563;
+        --color-border-medium: #6b7280;
+        --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .custom-news-header {
+        background: rgba(31, 41, 55, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    
+    .mobile-nav {
+        background: rgba(31, 41, 55, 0.95);
+    }
+}
+
+/* Print optimizations */
+@media print {
+    .custom-news-header,
+    .mobile-nav,
+    .sidebar,
+    .share-buttons,
+    .newsletter-signup,
+    .subscribe-btn,
+    .search-toggle {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+        color: black;
+        background: white;
+    }
+    
+    .article-content {
+        font-size: 11pt;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        color: black;
+    }
+    
+    blockquote {
+        border-left: 2px solid black;
+        page-break-inside: avoid;
+    }
+    
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+    
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        color: #666;
+    }
+}
+
+/*--------------------------------------------------------------
+9.0 Responsive Design
+--------------------------------------------------------------*/
+
+/* Large Desktop */
+@media (min-width: 1400px) {
     .header-inner {
-        padding: 0 1rem;
+        padding: 0 var(--space-8);
+    }
+    
+    .news-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+    :root {
+        --full-width: 1200px;
+    }
+    
+    .header-inner {
+        padding: 0 var(--space-6);
+    }
+}
+
+/* Tablet */
+@media (max-width: 968px) {
+    :root {
+        --space-8: 1.5rem;
+        --space-12: 2.5rem;
+    }
+    
+    .header-inner {
+        padding: 0 var(--space-4);
         min-height: 60px;
     }
     
     .header-site-title {
-        font-size: 1.4rem;
-    }
-    
-    .header-logo img {
-        height: 36px;
+        font-size: var(--font-size-xl);
     }
     
     .main-nav {
@@ -385,28 +820,52 @@ p, .wp-block-paragraph {
         display: flex;
     }
     
-    .header-actions .search-toggle {
-        width: 32px;
-        height: 32px;
+    .site-main {
+        padding: var(--space-6) var(--space-4);
     }
     
-    .subscribe-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+    }
+    
+    .footer-content {
+        padding: 0 var(--space-4);
+    }
+    
+    .footer-widgets {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
     }
 }
 
-@media (max-width: 480px) {
+/* Mobile */
+@media (max-width: 640px) {
+    :root {
+        --font-size-5xl: 2.25rem;
+        --font-size-4xl: 1.875rem;
+        --font-size-3xl: 1.5rem;
+        --space-6: 1rem;
+        --space-8: 1.25rem;
+        --space-12: 2rem;
+        --space-16: 2.5rem;
+    }
+    
     .header-inner {
-        padding: 0 1rem;
+        padding: 0 var(--space-3);
     }
     
     .header-logo-section {
-        gap: 0.75rem;
+        gap: var(--space-2);
     }
     
     .header-site-title {
-        font-size: 1.2rem;
+        font-size: var(--font-size-lg);
     }
     
     .header-logo img {
@@ -416,36 +875,290 @@ p, .wp-block-paragraph {
     .subscribe-btn {
         display: none;
     }
+    
+    .site-main {
+        padding: var(--space-4) var(--space-3);
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .article-card__content {
+        padding: var(--space-4);
+    }
+    
+    .footer-widgets {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .mobile-nav {
+        padding: var(--space-4);
+    }
 }
 
-/* 3.9 Override WordPress Default Styles */
-.wp-block-group.alignfull .custom-news-header,
-.wp-block-group.alignwide .header-inner {
-    all: unset;
-    display: flex;
+/* Small Mobile */
+@media (max-width: 480px) {
+    :root {
+        --font-size-5xl: 1.875rem;
+        --font-size-4xl: 1.5rem;
+        --font-size-3xl: 1.25rem;
+        --font-size-2xl: 1.125rem;
+    }
+    
+    .header-inner {
+        min-height: 50px;
+    }
+    
+    .wp-block-post-title,
+    .entry-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .article-content {
+        font-size: var(--font-size-base);
+    }
+    
+    .newsletter-signup {
+        padding: var(--space-6);
+    }
+    
+    .newsletter-signup__title {
+        font-size: var(--font-size-2xl);
+    }
 }
 
-.custom-news-header .wp-block-site-logo,
-.custom-news-header .wp-block-site-title,
-.custom-news-header .wp-block-navigation {
-    display: none;
+/*--------------------------------------------------------------
+10.0 WordPress Specific Fixes
+--------------------------------------------------------------*/
+
+/* Admin Bar Compatibility */
+.admin-bar .custom-news-header {
+    top: 32px;
 }
 
-/* 3.10 News-specific styling touches */
-.header-date {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.85rem;
-    color: #666;
-    font-weight: 400;
-    margin-left: 1rem;
-    padding-left: 1rem;
-    border-left: 1px solid #e0e0e0;
+@media screen and (max-width: 782px) {
+    .admin-bar .custom-news-header {
+        top: 46px;
+    }
 }
 
-/* Add breaking news ticker space if needed */
-.breaking-news-space {
-    height: 35px;
-    background: #ff4444;
-    color: white;
-    display: none; /* Show when needed */
+/* Block Editor Compatibility */
+.block-editor-page .custom-news-header {
+    position: relative;
+    top: auto;
 }
+
+/* Gutenberg Block Spacing */
+.wp-block-group {
+    margin-bottom: var(--space-8);
+}
+
+.wp-block-group .wp-block-group {
+    margin-bottom: var(--space-6);
+}
+
+/* Comments */
+.wp-block-comments {
+    margin-top: var(--space-16);
+}
+
+.wp-block-comment-template {
+    margin-bottom: var(--space-6);
+}
+
+.wp-block-comment-author-name {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.wp-block-comment-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+}
+
+.wp-block-comment-content {
+    margin-top: var(--space-3);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Post Navigation */
+.wp-block-post-navigation-link {
+    background: var(--color-bg-secondary);
+    padding: var(--space-4);
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    border: 1px solid var(--color-border-light);
+}
+
+.wp-block-post-navigation-link:hover {
+    background: var(--color-bg-tertiary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Search Form */
+.wp-block-search {
+    margin: var(--space-6) 0;
+}
+
+.wp-block-search__input {
+    padding: var(--space-3);
+    border: 1px solid var(--color-border-medium);
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-primary);
+}
+
+.wp-block-search__button {
+    background: var(--color-primary-600);
+    color: var(--color-white);
+    border: none;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-base);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.wp-block-search__button:hover {
+    background: var(--color-primary-700);
+}
+
+/* Archives */
+.wp-block-archives-list,
+.wp-block-categories-list,
+.wp-block-latest-posts {
+    list-style: none;
+    padding: 0;
+}
+
+.wp-block-archives-list li,
+.wp-block-categories-list li,
+.wp-block-latest-posts li {
+    margin-bottom: var(--space-2);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.wp-block-archives-list li:last-child,
+.wp-block-categories-list li:last-child,
+.wp-block-latest-posts li:last-child {
+    border-bottom: none;
+}
+
+/*--------------------------------------------------------------
+11.0 Utility Classes
+--------------------------------------------------------------*/
+
+/* Spacing Utilities */
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+
+/* Display Utilities */
+.hidden { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.grid { display: grid; }
+
+/* Flex Utilities */
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+
+/* Text Utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Border Radius */
+.rounded { border-radius: var(--radius-base); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* Shadow Utilities */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow { box-shadow: var(--shadow-base); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+/*--------------------------------------------------------------
+12.0 Animation & Transitions
+--------------------------------------------------------------*/
+
+/* Smooth animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Loading animation */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Hover animations */
+.hover-lift {
+    transition: var(--transition-base);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Focus animations */
+.focus-ring:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+/*--------------------------------------------------------------
+End of Stylesheet
+--------------------------------------------------------------*/
