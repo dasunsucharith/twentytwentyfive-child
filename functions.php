@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Twenty Twenty-Five Child Theme functions and definitions
- * Modern News Website - Optimized for Performance
+ * slviki Theme functions and definitions
  *
- * @package Twenty Twenty-Five Child
+ * @package slviki
  * @version 1.0.0
  */
 
@@ -16,7 +15,7 @@ if (!defined('ABSPATH')) {
 /**
  * Theme Setup
  */
-function twentytwentyfive_child_setup()
+function slviki_setup()
 {
 	// Add theme support
 	add_theme_support('custom-logo', array(
@@ -36,36 +35,28 @@ function twentytwentyfive_child_setup()
 	add_image_size('news-thumbnail', 300, 200, true);
 	add_image_size('news-card', 400, 250, true);
 }
-add_action('after_setup_theme', 'twentytwentyfive_child_setup');
+add_action('after_setup_theme', 'slviki_setup');
 
 /**
  * Enqueue Scripts and Styles - Performance Optimized
  */
-function twentytwentyfive_child_enqueue_assets()
+function slviki_enqueue_assets()
 {
 	$theme_version = wp_get_theme()->get('Version');
 
-	// Parent theme style
+	// Theme main styles
 	wp_enqueue_style(
-		'twentytwentyfive-parent-style',
-		get_template_directory_uri() . '/style.css',
+		'slviki-style',
+		get_stylesheet_directory_uri() . '/style.css',
 		array(),
 		$theme_version
 	);
 
-	// Child theme main styles
+	// Theme header style
 	wp_enqueue_style(
-		'twentytwentyfive-child-style',
-		get_stylesheet_directory_uri() . '/style.css',
-		array('twentytwentyfive-parent-style'),
-		$theme_version
-	);
-
-	// Child theme header style
-	wp_enqueue_style(
-		'twentytwentyfive-child-header-style',
+		'slviki-header-style',
 		get_stylesheet_directory_uri() . '/assets/css/header.css',
-		array('twentytwentyfive-child-style'),
+		array('slviki-style'),
 		$theme_version
 	);
 
@@ -79,16 +70,16 @@ function twentytwentyfive_child_enqueue_assets()
 
 	// Main JavaScript file (we'll create this)
 	wp_enqueue_script(
-		'twentytwentyfive-child-main',
+		'slviki-main',
 		get_stylesheet_directory_uri() . '/assets/js/main.js',
 		array(),
 		$theme_version,
 		true // Load in footer for better performance
 	);
 
-	// Child theme header script
+	// Theme header script
 	wp_enqueue_script(
-		'twentytwentyfive-child-header-script',
+		'slviki-header-script',
 		get_stylesheet_directory_uri() . '/assets/js/header.js',
 		array(),
 		$theme_version,
@@ -96,35 +87,35 @@ function twentytwentyfive_child_enqueue_assets()
 	);
 
 	// Localize script for AJAX if needed
-	wp_localize_script('twentytwentyfive-child-main', 'newsTheme', array(
+	wp_localize_script('slviki-main', 'newsTheme', array(
 		'ajaxUrl' => admin_url('admin-ajax.php'),
 		'nonce'   => wp_create_nonce('news_theme_nonce')
 	));
 }
-add_action('wp_enqueue_scripts', 'twentytwentyfive_child_enqueue_assets');
+add_action('wp_enqueue_scripts', 'slviki_enqueue_assets');
 
 /**
  * Register Navigation Menus
  */
-function twentytwentyfive_child_register_menus()
+function slviki_register_menus()
 {
 	register_nav_menus(array(
-		'primary'   => __('Primary Navigation', 'twentytwentyfive-child'),
-		'secondary' => __('Secondary Navigation', 'twentytwentyfive-child'),
-		'footer'    => __('Footer Navigation', 'twentytwentyfive-child'),
+		'primary'   => __('Primary Navigation', 'slviki'),
+		'secondary' => __('Secondary Navigation', 'slviki'),
+		'footer'    => __('Footer Navigation', 'slviki'),
 	));
 }
-add_action('init', 'twentytwentyfive_child_register_menus');
+add_action('init', 'slviki_register_menus');
 
 /**
  * Register Widget Areas
  */
-function twentytwentyfive_child_widgets_init()
+function slviki_widgets_init()
 {
 	register_sidebar(array(
-		'name'          => __('Sidebar', 'twentytwentyfive-child'),
+		'name'          => __('Sidebar', 'slviki'),
 		'id'            => 'sidebar-1',
-		'description'   => __('Add widgets here to appear in your sidebar.', 'twentytwentyfive-child'),
+		'description'   => __('Add widgets here to appear in your sidebar.', 'slviki'),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -132,23 +123,23 @@ function twentytwentyfive_child_widgets_init()
 	));
 
 	register_sidebar(array(
-		'name'          => __('Footer Widgets', 'twentytwentyfive-child'),
+		'name'          => __('Footer Widgets', 'slviki'),
 		'id'            => 'footer-widgets',
-		'description'   => __('Add widgets here to appear in your footer.', 'twentytwentyfive-child'),
+		'description'   => __('Add widgets here to appear in your footer.', 'slviki'),
 		'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h4 class="footer-widget-title">',
 		'after_title'   => '</h4>',
 	));
 }
-add_action('widgets_init', 'twentytwentyfive_child_widgets_init');
+add_action('widgets_init', 'slviki_widgets_init');
 
 /**
  * Performance Optimizations
  */
 
 // Remove unnecessary WordPress features for news site
-function twentytwentyfive_child_performance_optimizations()
+function slviki_performance_optimizations()
 {
 	// Remove emoji scripts and styles
 	remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -164,21 +155,21 @@ function twentytwentyfive_child_performance_optimizations()
 	// Remove unnecessary feeds
 	remove_action('wp_head', 'feed_links_extra', 3);
 }
-add_action('init', 'twentytwentyfive_child_performance_optimizations');
+add_action('init', 'slviki_performance_optimizations');
 
 // Optimize excerpt length for news cards
-function twentytwentyfive_child_excerpt_length($length)
+function slviki_excerpt_length($length)
 {
 	return 25;
 }
-add_filter('excerpt_length', 'twentytwentyfive_child_excerpt_length');
+add_filter('excerpt_length', 'slviki_excerpt_length');
 
 // Custom excerpt more text
-function twentytwentyfive_child_excerpt_more($more)
+function slviki_excerpt_more($more)
 {
 	return '...';
 }
-add_filter('excerpt_more', 'twentytwentyfive_child_excerpt_more');
+add_filter('excerpt_more', 'slviki_excerpt_more');
 
 /**
  * Custom Functions for News Site
@@ -233,11 +224,11 @@ add_action('wp_head', function () {
  */
 
 // Hide WordPress version
-function twentytwentyfive_child_remove_version()
+function slviki_remove_version()
 {
 	return '';
 }
-add_filter('the_generator', 'twentytwentyfive_child_remove_version');
+add_filter('the_generator', 'slviki_remove_version');
 
 // Disable file editing from admin
 if (!defined('DISALLOW_FILE_EDIT')) {
