@@ -1,0 +1,8 @@
+:root {
+    --content-width: 800px;
+    --wide-width: 1200px;
+}
+
+body {
+    font-family: var(--wp--preset--font-family--poppins);
+}

@@ -12,6 +12,12 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+// Include navigation walkers
+require_once get_template_directory() . '/inc/navigation-walkers.php';
+
+// Define content width
+$content_width = 800;
+
 /**
  * Theme Setup
  */
@@ -34,6 +40,96 @@ function slviki_setup()
 	add_image_size('news-featured', 800, 450, true);
 	add_image_size('news-thumbnail', 300, 200, true);
 	add_image_size('news-card', 400, 250, true);
+
+	// Editor Color Palette
+	add_theme_support('editor-color-palette', array(
+		array(
+			'name'  => __('Base', 'slviki'),
+			'slug'  => 'base',
+			'color' => '#ffffff',
+		),
+		array(
+			'name'  => __('Contrast', 'slviki'),
+			'slug'  => 'contrast',
+			'color' => '#111111',
+		),
+		array(
+			'name'  => __('Primary', 'slviki'),
+			'slug'  => 'primary',
+			'color' => '#0066cc',
+		),
+		array(
+			'name'  => __('Secondary', 'slviki'),
+			'slug'  => 'secondary',
+			'color' => '#ff4444',
+		),
+		array(
+			'name'  => __('Accent', 'slviki'),
+			'slug'  => 'accent',
+			'color' => '#f8fafc',
+		),
+		array(
+			'name'  => __('Neutral', 'slviki'),
+			'slug'  => 'neutral',
+			'color' => '#64748b',
+		),
+		array(
+			'name'  => __('Success', 'slviki'),
+			'slug'  => 'success',
+			'color' => '#22c55e',
+		),
+	));
+
+	// Editor Font Sizes
+	add_theme_support('editor-font-sizes', array(
+		array(
+			'name' => __('Small', 'slviki'),
+			'size' => '0.875rem',
+			'slug' => 'small',
+		),
+		array(
+			'name' => __('Medium', 'slviki'),
+			'size' => '1rem',
+			'slug' => 'medium',
+		),
+		array(
+			'name' => __('Large', 'slviki'),
+			'size' => '1.125rem',
+			'slug' => 'large',
+		),
+		array(
+			'name' => __('Extra Large', 'slviki'),
+			'size' => '1.25rem',
+			'slug' => 'x-large',
+		),
+		array(
+			'name' => __('XX Large', 'slviki'),
+			'size' => '1.5rem',
+			'slug' => 'xx-large',
+		),
+		array(
+			'name' => __('XXX Large', 'slviki'),
+			'size' => '2rem',
+			'slug' => 'xxx-large',
+		),
+	));
+
+	// Editor Font Families
+	add_theme_support('editor-font-families', array(
+		array(
+			'name'          => __('Poppins', 'slviki'),
+			'slug'          => 'poppins',
+			'fontFamily'    => "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+		),
+		array(
+			'name'          => __('Serif', 'slviki'),
+			'slug'          => 'serif',
+			'fontFamily'    => "Georgia, 'Times New Roman', serif",
+		),
+	));
+
+	// Editor Styles
+	add_editor_style('assets/css/editor-style.css');
 }
 add_action('after_setup_theme', 'slviki_setup');
 
