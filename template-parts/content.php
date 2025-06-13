@@ -63,4 +63,3 @@
 		<?php // slviki_entry_footer(); // Optional: if you have a function for entry footer ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
-```
