@@ -1,6 +1,6 @@
-# Twenty Twenty-Five Child Theme
+# News Theme
 
-This is a demo child theme used to customize the [Twenty Twenty-Five](https://wordpress.org/themes/twentytwentyfive/) theme.
+This is a demo classic theme inspired by the [Twenty Twenty-Five](https://wordpress.org/themes/twentytwentyfive/) design.
 
 ## Features
 
@@ -8,5 +8,6 @@ This is a demo child theme used to customize the [Twenty Twenty-Five](https://wo
 * Custom header pattern with a responsive navigation menu.
 * Example templates (`home.html` and `single.html`).
 * Additional styles located in `style.css`.
+* Classic PHP templates without `theme.json`.
 
 To use this theme, copy the `twentytwentyfive-child` directory to the `wp-content/themes/` folder of your WordPress installation and activate it from the WordPress admin.
