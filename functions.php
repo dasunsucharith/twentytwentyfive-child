@@ -14,6 +14,9 @@ if (!defined('ABSPATH')) {
 
 // Include navigation walkers from the child theme directory
 require_once get_stylesheet_directory() . '/inc/navigation-walkers.php';
+require_once get_stylesheet_directory() . '/inc/theme-setup.php';
+require_once get_stylesheet_directory() . '/inc/widgets.php';
+require_once get_stylesheet_directory() . '/inc/customizer.php';
 
 // Define content width
 $content_width = 800;
@@ -164,14 +167,14 @@ function slviki_enqueue_assets()
 		null
 	);
 
-	// Main JavaScript file (we'll create this)
-	wp_enqueue_script(
-		'slviki-main',
-		get_stylesheet_directory_uri() . '/assets/js/main.js',
-		array(),
-		$theme_version,
-		true // Load in footer for better performance
-	);
+        // Main JavaScript file
+        wp_enqueue_script(
+                'slviki-main',
+                get_stylesheet_directory_uri() . '/assets/js/scripts.js',
+                array(),
+                $theme_version,
+                true // Load in footer for better performance
+        );
 
 	// Theme header script
 	wp_enqueue_script(
