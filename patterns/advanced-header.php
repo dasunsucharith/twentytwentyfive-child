@@ -2,7 +2,7 @@
 
 /**
  * Title: Advanced News Header
- * Slug: twentytwentyfive-child/advanced-news-header
+ * Slug: slviki/advanced-news-header
  * Categories: header
  * Block Types: core/template-part/header
  * Description: Modern news header with smart navigation, search, and breaking news ticker

@@ -1,38 +1,26 @@
-=== Twenty Twenty-Five ===
-Contributors: wordpressdotorg
-Requires at least: 6.7
-Tested up to: 6.8
-Requires PHP: 7.2
-Stable tag: 1.2
+=== slviki ===
+Contributors: Dasun Sucharith
+Requires at least: 6.0
+Tested up to: 6.5
+Requires PHP: 7.4
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Twenty Twenty-Five emphasizes simplicity and adaptability. It offers flexible design options, supported by a variety of patterns for different page types, such as services and landing pages, making it ideal for building personal blogs, professional portfolios, online magazines, or business websites. Its templates cater to various blog styles, from text-focused to image-heavy layouts. Additionally, it supports international typography and diverse color palettes, ensuring accessibility and customization for users worldwide.
+A standalone WordPress theme named slviki. It's designed to be simple, lightweight, and easily customizable.
 
 
 == Changelog ==
 
-= 1.2 =
-* Released: April 15, 2025
-
-https://wordpress.org/documentation/article/twenty-twenty-five-changelog/#Version_1.2
-
-= 1.1 =
-* Released: February 11, 2025
-
-https://wordpress.org/documentation/article/twenty-twenty-five-changelog/#Version_1.1
-
-= 1.0 =
-* Released: November 13, 2024
-
-https://wordpress.org/documentation/article/twenty-twenty-five-changelog/#Version_1.0
+= 1.0.0 =
+* Initial release of slviki theme.
 
 == Copyright ==
 
-Twenty Twenty-Five WordPress Theme, (C) 2024-2025 WordPress.org and contributors.
-Twenty Twenty-Five is distributed under the terms of the GNU GPL.
+slviki WordPress Theme, (C) 2024 Dasun Sucharith.
+slviki is distributed under the terms of the GNU GPL.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,15 +32,11 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-This theme incorporates code from:
-
-Twenty Twenty-Four WordPress Theme, (C) 2023 WordPress.org
-License: GPLv2 or later. License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
 
 This theme bundles the following third-party resources:
 
 === Fonts ===
+Note: The following resources are inherited from the base theme and may need review for the slviki theme.
 .ttf files downloaded from fonts.google.com have been converted to .woff2 using
 https://github.com/google/woff2
 
@@ -107,6 +91,7 @@ Reference: https://github.com/googlefonts/beiruti
 Source: https://fonts.google.com/specimen/Beiruti
 
 === Images ===
+Note: The following resources are inherited from the base theme and may need review for the slviki theme.
 
 Northern Buttercups.
 Free public domain CC0 image.
