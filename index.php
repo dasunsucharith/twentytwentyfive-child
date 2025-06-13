@@ -55,4 +55,3 @@ get_header();
 <?php
 get_sidebar(); // Optional: if you have a sidebar.php file
 get_footer();
-```
