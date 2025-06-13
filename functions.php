@@ -61,6 +61,14 @@ function twentytwentyfive_child_enqueue_assets()
 		$theme_version
 	);
 
+	// Child theme header style
+	wp_enqueue_style(
+		'twentytwentyfive-child-header-style',
+		get_stylesheet_directory_uri() . '/assets/css/header.css',
+		array('twentytwentyfive-child-style'),
+		$theme_version
+	);
+
 	// Google Fonts - Optimized loading with display=swap
 	wp_enqueue_style(
 		'google-fonts-poppins',
@@ -76,6 +84,15 @@ function twentytwentyfive_child_enqueue_assets()
 		array(),
 		$theme_version,
 		true // Load in footer for better performance
+	);
+
+	// Child theme header script
+	wp_enqueue_script(
+		'twentytwentyfive-child-header-script',
+		get_stylesheet_directory_uri() . '/assets/js/header.js',
+		array(),
+		$theme_version,
+		true // Load in footer
 	);
 
 	// Localize script for AJAX if needed
