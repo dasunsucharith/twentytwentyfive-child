@@ -12,8 +12,8 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-// Include navigation walkers
-require_once get_template_directory() . '/inc/navigation-walkers.php';
+// Include navigation walkers from the child theme directory
+require_once get_stylesheet_directory() . '/inc/navigation-walkers.php';
 
 // Define content width
 $content_width = 800;
