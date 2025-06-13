@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }} # Optional: defaults to 21 if not set.
-          local-dir: ./twentytwentyfive-child/ # Path to the local directory to upload
+          local-dir: ./ # Path to the local directory to upload
           server-dir: public_html/wp-content/themes/twentytwentyfive-child/ # Path on the server
           # Optional: clean up remote directory before uploading
           # clean-up: true
