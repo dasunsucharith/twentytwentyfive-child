@@ -100,7 +100,7 @@
 					<p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
 				</div>
 				<div class="footer-credits">
-					<p>Made with ❤️ by <a href="#" target="_blank" rel="noopener">Dasun Sucharith</a></p>
+					<p>Made with ❤️ by <a href="https://dasunsucharith.me" target="_blank" rel="noopener">Dasun Sucharith</a></p>
 				</div>
 			</div>
 		</div>
