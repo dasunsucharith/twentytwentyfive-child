@@ -67,7 +67,7 @@
 					<h4 class="footer-info-title">Contact</h4>
 					<div class="footer-contact">
 						<p>Email: info@<?php echo esc_html(str_replace(['http://', 'https://', 'www.'], '', home_url())); ?></p>
-						<p>Phone: +1 (555) 123-4567</p>
+						<p>Phone: +94 71 361 3974</p>
 					</div>
 					
 					<!-- Social Links -->
@@ -100,7 +100,7 @@
 					<p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
 				</div>
 				<div class="footer-credits">
-					<p>Powered by <a href="https://wordpress.org/" target="_blank" rel="noopener">WordPress</a></p>
+					<p>Made with ❤️ by <a href="#" target="_blank" rel="noopener">Dasun Sucharith</a></p>
 				</div>
 			</div>
 		</div>

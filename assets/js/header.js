@@ -141,13 +141,8 @@
 	 * Toggle search
 	 */
 	function toggleSearch() {
-		// Create a simple search prompt for now
-		const searchTerm = prompt("What would you like to search for?");
-		
-		if (searchTerm && searchTerm.trim()) {
-			// Redirect to search results page
-			window.location.href = `/?s=${encodeURIComponent(searchTerm.trim())}`;
-		}
+		// Redirect directly to search page
+		window.location.href = '/?s=';
 	}
 
 	/**
