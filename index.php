@@ -94,15 +94,6 @@ get_header();
 				
 				<!-- Main Articles Column -->
 				<main id="primary" class="news-articles-main">
-					<?php if (is_home() && !is_front_page()) : ?>
-						<header class="news-section-header">
-							<h1 class="news-section-title"><?php single_post_title(); ?></h1>
-						</header>
-					<?php elseif (is_home() && !is_paged()) : ?>
-						<header class="news-section-header">
-							<h1 class="news-section-title">Latest News</h1>
-						</header>
-					<?php endif; ?>
 
 					<div class="news-articles-grid">
 						<?php

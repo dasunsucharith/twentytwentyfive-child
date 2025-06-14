@@ -1716,13 +1716,14 @@ img:not([loading="lazy"]) {
 /* Main News Layout Container */
 .news-layout {
     background-color: var(--color-bg-primary);
-    min-height: 100vh;
+    min-height: calc(100vh - 70px);
+    padding-top: 0;
 }
 
 .news-container {
-    max-width: var(--content-width);
+    max-width: var(--full-width);
     margin: 0 auto;
-    padding: var(--space-8) var(--space-6);
+    padding: var(--space-10) var(--space-6);
 }
 
 /*--------------------------------------------------------------
@@ -1730,17 +1731,17 @@ img:not([loading="lazy"]) {
 --------------------------------------------------------------*/
 
 .featured-posts-section {
-    margin-bottom: var(--space-12);
-    padding-bottom: var(--space-8);
-    border-bottom: 1px solid var(--color-border-light);
+    margin-bottom: var(--space-16);
+    padding-bottom: 0;
 }
 
 .featured-posts-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: var(--space-4);
-    height: 500px;
+    gap: var(--space-6);
+    height: 550px;
+    margin-bottom: var(--space-4);
 }
 
 .featured-post {
@@ -1855,26 +1856,12 @@ img:not([loading="lazy"]) {
 .news-main-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: var(--space-8);
+    gap: var(--space-12);
     align-items: start;
 }
 
 .news-articles-main {
     min-width: 0;
-}
-
-.news-section-header {
-    margin-bottom: var(--space-8);
-    padding-bottom: var(--space-4);
-    border-bottom: 2px solid var(--color-primary-600);
-}
-
-.news-section-title {
-    font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
-    margin: 0;
-    letter-spacing: var(--letter-spacing-tight);
 }
 
 /*--------------------------------------------------------------
@@ -1883,24 +1870,24 @@ img:not([loading="lazy"]) {
 
 .news-articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-6);
-    margin-bottom: var(--space-10);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
 }
 
 .news-article-card {
     background: var(--color-white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: var(--transition-base);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid var(--color-border-light);
 }
 
 .news-article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-primary-200);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-color: transparent;
 }
 
 .article-card-image {
@@ -1921,7 +1908,7 @@ img:not([loading="lazy"]) {
 }
 
 .article-card-content {
-    padding: var(--space-6);
+    padding: var(--space-8);
 }
 
 .article-card-meta {
@@ -2483,22 +2470,33 @@ img:not([loading="lazy"]) {
 13.6 Responsive Design
 --------------------------------------------------------------*/
 
+@media (max-width: 1200px) {
+    .news-container {
+        padding: var(--space-8) var(--space-4);
+    }
+    
+    .news-main-content {
+        gap: var(--space-8);
+    }
+}
+
 @media (max-width: 1024px) {
     .news-main-content {
         grid-template-columns: 1fr;
-        gap: var(--space-6);
+        gap: var(--space-10);
     }
 
     .news-sidebar {
         position: static;
         order: 2;
-        margin-top: var(--space-8);
+        margin-top: var(--space-12);
         border-top: 1px solid var(--color-border-light);
-        padding-top: var(--space-8);
+        padding-top: var(--space-10);
     }
 
     .featured-posts-grid {
-        height: 400px;
+        height: 450px;
+        gap: var(--space-4);
     }
 
     .featured-post-1 .featured-post-title {
@@ -2527,11 +2525,11 @@ img:not([loading="lazy"]) {
 
     .news-articles-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-4);
+        gap: var(--space-6);
     }
 
-    .news-section-title {
-        font-size: var(--font-size-2xl);
+    .article-card-content {
+        padding: var(--space-6);
     }
 
     .article-card-footer {
@@ -2542,7 +2540,7 @@ img:not([loading="lazy"]) {
 
     .page-numbers {
         flex-wrap: wrap;
-        gap: var(--space-1);
+        gap: var(--space-2);
     }
 
     .page-numbers .prev,
