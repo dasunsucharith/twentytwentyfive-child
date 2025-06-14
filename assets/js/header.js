@@ -141,10 +141,13 @@
 	 * Toggle search
 	 */
 	function toggleSearch() {
-		// Simple search toggle - you can expand this later
-		console.log("Search clicked");
-		// For now, you could redirect to search page or open a search modal
-		// window.location.href = '/?s=';
+		// Create a simple search prompt for now
+		const searchTerm = prompt("What would you like to search for?");
+		
+		if (searchTerm && searchTerm.trim()) {
+			// Redirect to search results page
+			window.location.href = `/?s=${encodeURIComponent(searchTerm.trim())}`;
+		}
 	}
 
 	/**
