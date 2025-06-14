@@ -39,6 +39,9 @@
 		elements.mobileNav = document.getElementById("mobile-menu");
 		elements.mobileClose = document.querySelector(".mobile-menu-close");
 		elements.searchBtn = document.querySelector(".search-btn");
+		elements.searchOverlay = document.getElementById("search-overlay");
+		elements.searchOverlayClose = document.querySelector(".search-overlay-close");
+		elements.searchInputLarge = document.querySelector(".search-input-large");
 		elements.body = document.body;
 	}
 
@@ -129,20 +132,67 @@
 	 * Initialize search functionality
 	 */
 	function initSearch() {
-		if (!elements.searchBtn) return;
+		if (!elements.searchBtn || !elements.searchOverlay) return;
 
+		// Search button click
 		elements.searchBtn.addEventListener("click", function (e) {
 			e.preventDefault();
-			toggleSearch();
+			openSearch();
+		});
+
+		// Search overlay close button
+		if (elements.searchOverlayClose) {
+			elements.searchOverlayClose.addEventListener("click", function (e) {
+				e.preventDefault();
+				closeSearch();
+			});
+		}
+
+		// Close search when clicking on overlay background
+		elements.searchOverlay.addEventListener("click", function (e) {
+			if (e.target === elements.searchOverlay) {
+				closeSearch();
+			}
+		});
+
+		// Handle escape key
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape" && state.isSearchOpen) {
+				closeSearch();
+			}
+		});
+
+		// Handle window resize
+		window.addEventListener("resize", function () {
+			if (window.innerWidth > 968 && state.isSearchOpen) {
+				closeSearch();
+			}
 		});
 	}
 
 	/**
-	 * Toggle search
+	 * Open search overlay
 	 */
-	function toggleSearch() {
-		// Redirect directly to search page
-		window.location.href = '/?s=';
+	function openSearch() {
+		state.isSearchOpen = true;
+		elements.searchOverlay.classList.add("active");
+		elements.body.classList.add("search-open");
+		
+		// Focus search input after animation
+		setTimeout(() => {
+			if (elements.searchInputLarge) {
+				elements.searchInputLarge.focus();
+			}
+		}, 300);
+	}
+
+	/**
+	 * Close search overlay
+	 */
+	function closeSearch() {
+		state.isSearchOpen = false;
+		elements.searchOverlay.classList.remove("active");
+		elements.body.classList.remove("search-open");
 	}
 
 	/**
@@ -192,5 +242,7 @@
 		toggleMobileMenu,
 		openMobileMenu,
 		closeMobileMenu,
+		openSearch,
+		closeSearch,
 	};
 })();

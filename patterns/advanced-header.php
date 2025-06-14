@@ -56,6 +56,58 @@
 		</button>
 	</div>
 
+	<!-- Full Page Search Overlay -->
+	<div class="search-overlay" id="search-overlay">
+		<div class="search-overlay-container">
+			<div class="search-overlay-header">
+				<div class="search-overlay-logo">
+					<?php if (has_custom_logo()): ?>
+						<?php the_custom_logo(); ?>
+					<?php else: ?>
+						<span class="search-overlay-title"><?php bloginfo('name'); ?></span>
+					<?php endif; ?>
+				</div>
+				<button class="search-overlay-close" aria-label="Close search">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</button>
+			</div>
+			
+			<div class="search-overlay-content">
+				<div class="search-overlay-form">
+					<h2 class="search-overlay-heading">What are you looking for?</h2>
+					<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="search-form-large">
+						<div class="search-input-wrapper">
+							<input type="search" class="search-input-large" placeholder="Type your search here..." name="s" value="<?php echo get_search_query(); ?>" autocomplete="off">
+							<button type="submit" class="search-submit-large">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<circle cx="11" cy="11" r="8" />
+									<path d="m21 21-4.35-4.35" />
+								</svg>
+							</button>
+						</div>
+					</form>
+				</div>
+				
+				<div class="search-overlay-suggestions">
+					<h3 class="search-suggestions-title">Popular Searches</h3>
+					<div class="search-suggestions-list">
+						<?php
+						$popular_searches = ['Technology', 'Business', 'Sports', 'Politics', 'Health', 'Entertainment'];
+						foreach ($popular_searches as $term):
+						?>
+							<a href="<?php echo esc_url(home_url('/?s=' . urlencode($term))); ?>" class="search-suggestion-tag">
+								<?php echo esc_html($term); ?>
+							</a>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Full Page Mobile Menu -->
 	<div class="mobile-menu-overlay" id="mobile-menu">
 		<div class="mobile-menu-container">
