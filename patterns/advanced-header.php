@@ -11,92 +11,92 @@
 ?>
 
 <!-- wp:html -->
-<header class="custom-news-header" id="site-header">
-	<!-- Skip Link for Accessibility -->
-	<a class="skip-link sr-only" href="#main">Skip to main content</a>
-
-	<div class="header-inner">
-		<!-- Logo & Site Title Section -->
-		<div class="header-logo-section">
+<header class="site-header" id="site-header">
+	<div class="header-container">
+		<!-- Logo Section -->
+		<div class="header-logo">
 			<?php if (has_custom_logo()): ?>
-				<div class="header-logo">
-					<?php the_custom_logo(); ?>
-				</div>
+				<?php the_custom_logo(); ?>
+			<?php else: ?>
+				<a href="<?php echo esc_url(home_url('/')); ?>" class="site-title">
+					<?php bloginfo('name'); ?>
+				</a>
 			<?php endif; ?>
-
-			<div class="header-text">
-				<h1 class="header-site-title">
-					<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-						<?php bloginfo('name'); ?>
-					</a>
-				</h1>
-			</div>
 		</div>
 
-		<!-- Main Navigation -->
-		<nav class="header-navigation" role="navigation" aria-label="Main navigation">
-			<div class="main-nav-wrapper">
+		<!-- Desktop Navigation & Actions -->
+		<div class="header-nav-desktop">
+			<!-- Main Navigation -->
+			<nav class="main-navigation" role="navigation" aria-label="Main navigation">
 				<?php
 				wp_nav_menu([
 					'theme_location' => 'primary',
-					'menu_class' => 'main-nav',
+					'menu_class' => 'nav-menu',
 					'container' => false,
 					'depth' => 2,
 					'fallback_cb' => 'slviki_fallback_nav_menu',
 				]);
 				?>
-			</div>
-		</nav>
+			</nav>
 
-		<!-- Header Actions -->
-		<div class="header-actions">
-			<!-- Search -->
-			<button class="search-toggle" aria-label="Toggle search" aria-expanded="false">
+			<!-- Search Button -->
+			<button class="search-btn" aria-label="Search">
 				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<circle cx="11" cy="11" r="8" />
 					<path d="m21 21-4.35-4.35" />
 				</svg>
 			</button>
-
-			<!-- Subscribe Button -->
-			<a href="#" class="subscribe-btn">Subscribe</a>
-
-			<!-- Mobile Menu Toggle -->
-			<button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
 		</div>
+
+		<!-- Mobile Menu Toggle -->
+		<button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+			<span class="hamburger-line"></span>
+			<span class="hamburger-line"></span>
+			<span class="hamburger-line"></span>
+		</button>
 	</div>
 
-	<!-- Mobile Navigation -->
-	<div class="mobile-nav" id="mobile-menu" aria-hidden="true">
-		<div class="mobile-nav-content">
-			<!-- Mobile Search -->
-			<div class="mobile-search">
-				<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+	<!-- Full Page Mobile Menu -->
+	<div class="mobile-menu-overlay" id="mobile-menu">
+		<div class="mobile-menu-container">
+			<div class="mobile-menu-header">
+				<div class="mobile-menu-logo">
+					<?php if (has_custom_logo()): ?>
+						<?php the_custom_logo(); ?>
+					<?php else: ?>
+						<span class="mobile-site-title"><?php bloginfo('name'); ?></span>
+					<?php endif; ?>
+				</div>
+				<button class="mobile-menu-close" aria-label="Close menu">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</button>
+			</div>
+			
+			<nav class="mobile-navigation">
+				<?php
+				wp_nav_menu([
+					'theme_location' => 'primary',
+					'menu_class' => 'mobile-nav-menu',
+					'container' => false,
+					'depth' => 2,
+					'fallback_cb' => 'slviki_fallback_nav_menu',
+				]);
+				?>
+			</nav>
+
+			<div class="mobile-menu-search">
+				<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="mobile-search-form">
 					<input type="search" class="mobile-search-input" placeholder="Search..." name="s" value="<?php echo get_search_query(); ?>">
-					<button type="submit" class="mobile-search-btn">
+					<button type="submit" class="mobile-search-submit">
 						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 							<circle cx="11" cy="11" r="8" />
 							<path d="m21 21-4.35-4.35" />
 						</svg>
 					</button>
 				</form>
-			</div>
-
-			<!-- Mobile Menu -->
-			<div class="mobile-menu-wrapper">
-				<?php
-				wp_nav_menu([
-					'theme_location' => 'primary',
-					'menu_class' => 'mobile-menu-list',
-					'container' => false,
-					'depth' => 2,
-					'fallback_cb' => 'slviki_fallback_nav_menu',
-				]);
-				?>
 			</div>
 		</div>
 	</div>

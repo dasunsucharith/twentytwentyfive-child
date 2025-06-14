@@ -37,7 +37,8 @@
 		elements.header = document.getElementById("site-header");
 		elements.mobileToggle = document.querySelector(".mobile-menu-toggle");
 		elements.mobileNav = document.getElementById("mobile-menu");
-		elements.searchToggle = document.querySelector(".search-toggle");
+		elements.mobileClose = document.querySelector(".mobile-menu-close");
+		elements.searchBtn = document.querySelector(".search-btn");
 		elements.body = document.body;
 	}
 
@@ -53,13 +54,17 @@
 			toggleMobileMenu();
 		});
 
-		// Close mobile menu when clicking outside
-		document.addEventListener("click", function (e) {
-			if (
-				state.isMobileMenuOpen &&
-				!elements.mobileNav.contains(e.target) &&
-				!elements.mobileToggle.contains(e.target)
-			) {
+		// Mobile menu close button
+		if (elements.mobileClose) {
+			elements.mobileClose.addEventListener("click", function (e) {
+				e.preventDefault();
+				closeMobileMenu();
+			});
+		}
+
+		// Close mobile menu when clicking on overlay
+		elements.mobileNav.addEventListener("click", function (e) {
+			if (e.target === elements.mobileNav) {
 				closeMobileMenu();
 			}
 		});
@@ -124,9 +129,9 @@
 	 * Initialize search functionality
 	 */
 	function initSearch() {
-		if (!elements.searchToggle) return;
+		if (!elements.searchBtn) return;
 
-		elements.searchToggle.addEventListener("click", function (e) {
+		elements.searchBtn.addEventListener("click", function (e) {
 			e.preventDefault();
 			toggleSearch();
 		});
@@ -136,8 +141,10 @@
 	 * Toggle search
 	 */
 	function toggleSearch() {
-		// Simple search toggle - you can expand this
-		console.log("Search toggled");
+		// Simple search toggle - you can expand this later
+		console.log("Search clicked");
+		// For now, you could redirect to search page or open a search modal
+		// window.location.href = '/?s=';
 	}
 
 	/**
@@ -154,9 +161,9 @@
 
 			// Add scrolled class for styling
 			if (scrollTop > 100) {
-				elements.header.classList.add("header-scrolled");
+				elements.header.classList.add("scrolled");
 			} else {
-				elements.header.classList.remove("header-scrolled");
+				elements.header.classList.remove("scrolled");
 			}
 
 			lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
