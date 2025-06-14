@@ -180,7 +180,7 @@ function slviki_enqueue_assets()
 	wp_enqueue_script(
 		'slviki-header-script',
 		get_stylesheet_directory_uri() . '/assets/js/header.js',
-		array(),
+		array('slviki-main'),
 		$theme_version,
 		true // Load in footer
 	);

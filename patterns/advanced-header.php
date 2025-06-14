@@ -1,265 +1,83 @@
 <?php
 
 /**
- * Title: Advanced News Header
- * Slug: slviki/advanced-news-header
+ * Title: Simple News Header
+ * Slug: slviki/simple-news-header
  * Categories: header
  * Block Types: core/template-part/header
- * Description: Modern news header with smart navigation, search, and breaking news ticker
+ * Description: Clean news header with WordPress menu integration and mobile optimization
  */
-
-// Get current date for header
-$current_date = date('l, F j, Y');
-$current_time = date('g:i A T');
-
-// Check for breaking news (you can customize this logic)
-$breaking_news = get_option('breaking_news_text', '');
-$show_breaking_news = !empty($breaking_news) && get_option('show_breaking_news', false);
 
 ?>
 
-<!-- Breaking News Ticker (conditionally shown) -->
-<?php if ($show_breaking_news): ?>
-	<!-- wp:html -->
-	<div class="breaking-news-banner" role="alert" aria-live="assertive">
-		<div class="breaking-news-banner__content">
-			<span class="breaking-news-banner__label">Breaking</span>
-			<div class="breaking-news-banner__text"><?php echo esc_html($breaking_news); ?></div>
-			<button class="breaking-news-banner__close" aria-label="Close breaking news">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<line x1="18" y1="6" x2="6" y2="18"></line>
-					<line x1="6" y1="6" x2="18" y2="18"></line>
-				</svg>
-			</button>
-		</div>
-	</div>
-	<!-- /wp:html -->
-<?php endif; ?>
-
-<!-- Main Header -->
 <!-- wp:html -->
-<header class="news-header" id="site-header">
+<header class="custom-news-header" id="site-header">
 	<!-- Skip Link for Accessibility -->
-	<a class="skip-link sr-only focus:not-sr-only" href="#main">Skip to main content</a>
+	<a class="skip-link sr-only" href="#main">Skip to main content</a>
 
-	<!-- Top Bar with Date/Time and Social -->
-	<div class="header-top-bar">
-		<div class="header-top-bar__content">
-			<div class="header-date-time">
-				<time datetime="<?php echo date('c'); ?>" class="header-date">
-					<?php echo $current_date; ?>
-				</time>
-				<span class="header-time"><?php echo $current_time; ?></span>
-			</div>
+	<div class="header-inner">
+		<!-- Logo & Site Title Section -->
+		<div class="header-logo-section">
+			<?php if (has_custom_logo()): ?>
+				<div class="header-logo">
+					<?php the_custom_logo(); ?>
+				</div>
+			<?php endif; ?>
 
-			<div class="header-social">
-				<?php
-				// Get social media links from customizer
-				$social_links = [
-					'facebook' => get_theme_mod('social_facebook', ''),
-					'twitter' => get_theme_mod('social_twitter', ''),
-					'instagram' => get_theme_mod('social_instagram', ''),
-					'youtube' => get_theme_mod('social_youtube', ''),
-					'rss' => get_bloginfo('rss2_url')
-				];
-
-				foreach ($social_links as $platform => $url):
-					if (!empty($url)):
-				?>
-						<a href="<?php echo esc_url($url); ?>"
-							class="social-link social-link--<?php echo $platform; ?>"
-							target="<?php echo $platform === 'rss' ? '_self' : '_blank'; ?>"
-							rel="<?php echo $platform === 'rss' ? '' : 'noopener noreferrer'; ?>"
-							aria-label="Follow us on <?php echo ucfirst($platform); ?>">
-							<?php echo get_social_icon($platform); ?>
-						</a>
-				<?php
-					endif;
-				endforeach;
-				?>
+			<div class="header-text">
+				<h1 class="header-site-title">
+					<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+						<?php bloginfo('name'); ?>
+					</a>
+				</h1>
 			</div>
 		</div>
-	</div>
 
-	<!-- Main Header Content -->
-	<div class="header-main">
-		<div class="header-main__content">
-			<!-- Logo & Site Title Section -->
-			<div class="header-brand">
-				<?php if (has_custom_logo()): ?>
-					<div class="header-logo">
-						<?php the_custom_logo(); ?>
-					</div>
-				<?php endif; ?>
-
-				<div class="header-text">
-					<h1 class="site-title">
-						<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-							<?php bloginfo('name'); ?>
-						</a>
-					</h1>
-					<?php
-					$description = get_bloginfo('description', 'display');
-					if ($description || is_customize_preview()):
-					?>
-						<p class="site-description"><?php echo $description; ?></p>
-					<?php endif; ?>
-				</div>
-			</div>
-
-			<!-- Weather Widget (Optional) -->
-			<div class="header-weather" id="weather-widget">
-				<!-- Weather will be loaded via JavaScript -->
-			</div>
-
-			<!-- Header Actions -->
-			<div class="header-actions">
-				<!-- Search -->
-				<div class="header-search">
-					<button class="search-toggle" aria-label="Open search" aria-expanded="false" aria-controls="search-form">
-						<svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<circle cx="11" cy="11" r="8" />
-							<path d="m21 21-4.35-4.35" />
-						</svg>
-						<svg class="close-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<line x1="18" y1="6" x2="6" y2="18" />
-							<line x1="6" y1="6" x2="18" y2="18" />
-						</svg>
-					</button>
-
-					<div class="search-form-container" id="search-form">
-						<form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
-							<label class="sr-only" for="search-input">Search for:</label>
-							<input type="search"
-								id="search-input"
-								class="search-input"
-								placeholder="Search news..."
-								value="<?php echo get_search_query(); ?>"
-								name="s"
-								autocomplete="off"
-								spellcheck="false">
-							<button type="submit" class="search-submit" aria-label="Submit search">
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<circle cx="11" cy="11" r="8" />
-									<path d="m21 21-4.35-4.35" />
-								</svg>
-							</button>
-						</form>
-
-						<!-- Quick Search Suggestions -->
-						<div class="search-suggestions" id="search-suggestions">
-							<div class="search-suggestions__header">Popular searches</div>
-							<div class="search-suggestions__list">
-								<?php
-								// Get popular search terms or categories
-								$popular_searches = ['Politics', 'Technology', 'Business', 'Sports', 'Health'];
-								foreach ($popular_searches as $term):
-								?>
-									<a href="<?php echo esc_url(home_url('/?s=' . urlencode($term))); ?>" class="search-suggestion">
-										<?php echo esc_html($term); ?>
-									</a>
-								<?php endforeach; ?>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Dark Mode Toggle -->
-				<button class="theme-toggle" aria-label="Toggle dark mode" id="theme-toggle">
-					<svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<circle cx="12" cy="12" r="5" />
-						<line x1="12" y1="1" x2="12" y2="3" />
-						<line x1="12" y1="21" x2="12" y2="23" />
-						<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-						<line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-						<line x1="1" y1="12" x2="3" y2="12" />
-						<line x1="21" y1="12" x2="23" y2="12" />
-						<line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-						<line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-					</svg>
-					<svg class="moon-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-					</svg>
-				</button>
-
-				<!-- Newsletter Signup -->
-				<a href="<?php echo esc_url(home_url('/newsletter')); ?>" class="newsletter-btn">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-						<polyline points="22,6 12,13 2,6" />
-					</svg>
-					<span>Newsletter</span>
-				</a>
-			</div>
-		</div>
-	</div>
-
-	<!-- Navigation -->
-	<nav class="header-nav" role="navigation" aria-label="Main navigation">
-		<div class="header-nav__content">
-			<!-- Primary Navigation -->
-			<div class="nav-primary">
+		<!-- Main Navigation -->
+		<nav class="header-navigation" role="navigation" aria-label="Main navigation">
+			<div class="main-nav-wrapper">
 				<?php
 				wp_nav_menu([
 					'theme_location' => 'primary',
-					'menu_class' => 'nav-menu',
+					'menu_class' => 'main-nav',
 					'container' => false,
 					'depth' => 2,
-					'fallback_cb' => 'fallback_nav_menu',
-					'walker' => new Custom_Nav_Walker(),
+					'fallback_cb' => 'slviki_fallback_nav_menu',
 				]);
 				?>
 			</div>
+		</nav>
 
-			<!-- Secondary Navigation -->
-			<div class="nav-secondary">
-				<?php
-				wp_nav_menu([
-					'theme_location' => 'secondary',
-					'menu_class' => 'nav-secondary-menu',
-					'container' => false,
-					'depth' => 1,
-					'fallback_cb' => false,
-				]);
-				?>
-			</div>
+		<!-- Header Actions -->
+		<div class="header-actions">
+			<!-- Search -->
+			<button class="search-toggle" aria-label="Toggle search" aria-expanded="false">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<circle cx="11" cy="11" r="8" />
+					<path d="m21 21-4.35-4.35" />
+				</svg>
+			</button>
+
+			<!-- Subscribe Button -->
+			<a href="#" class="subscribe-btn">Subscribe</a>
 
 			<!-- Mobile Menu Toggle -->
-			<button class="mobile-menu-toggle"
-				aria-label="Toggle mobile menu"
-				aria-expanded="false"
-				aria-controls="mobile-menu"
-				id="mobile-toggle">
-				<span class="hamburger-line"></span>
-				<span class="hamburger-line"></span>
-				<span class="hamburger-line"></span>
-				<span class="sr-only">Menu</span>
+			<button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+				<span></span>
+				<span></span>
+				<span></span>
 			</button>
 		</div>
-	</nav>
+	</div>
 
 	<!-- Mobile Navigation -->
 	<div class="mobile-nav" id="mobile-menu" aria-hidden="true">
-		<div class="mobile-nav__header">
-			<div class="mobile-nav__title">Menu</div>
-			<button class="mobile-nav__close" aria-label="Close mobile menu">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<line x1="18" y1="6" x2="6" y2="18" />
-					<line x1="6" y1="6" x2="18" y2="18" />
-				</svg>
-			</button>
-		</div>
-
-		<div class="mobile-nav__content">
+		<div class="mobile-nav-content">
 			<!-- Mobile Search -->
 			<div class="mobile-search">
 				<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-					<input type="search"
-						class="mobile-search__input"
-						placeholder="Search..."
-						name="s"
-						value="<?php echo get_search_query(); ?>">
-					<button type="submit" class="mobile-search__submit">
+					<input type="search" class="mobile-search-input" placeholder="Search..." name="s" value="<?php echo get_search_query(); ?>">
+					<button type="submit" class="mobile-search-btn">
 						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 							<circle cx="11" cy="11" r="8" />
 							<path d="m21 21-4.35-4.35" />
@@ -269,42 +87,38 @@ $show_breaking_news = !empty($breaking_news) && get_option('show_breaking_news',
 			</div>
 
 			<!-- Mobile Menu -->
-			<div class="mobile-nav__menu">
+			<div class="mobile-menu-wrapper">
 				<?php
 				wp_nav_menu([
 					'theme_location' => 'primary',
 					'menu_class' => 'mobile-menu-list',
 					'container' => false,
 					'depth' => 2,
-					'fallback_cb' => 'fallback_mobile_menu',
-					'walker' => new Mobile_Nav_Walker(),
+					'fallback_cb' => 'slviki_fallback_nav_menu',
 				]);
 				?>
 			</div>
-
-			<!-- Mobile Social Links -->
-			<div class="mobile-nav__social">
-				<?php foreach ($social_links as $platform => $url): ?>
-					<?php if (!empty($url)): ?>
-						<a href="<?php echo esc_url($url); ?>"
-							class="mobile-social-link"
-							target="<?php echo $platform === 'rss' ? '_self' : '_blank'; ?>"
-							rel="<?php echo $platform === 'rss' ? '' : 'noopener noreferrer'; ?>"
-							aria-label="<?php echo ucfirst($platform); ?>">
-							<?php echo get_social_icon($platform); ?>
-						</a>
-					<?php endif; ?>
-				<?php endforeach; ?>
-			</div>
 		</div>
 	</div>
-
-	<!-- Mobile Overlay -->
-	<div class="mobile-overlay" id="mobile-overlay"></div>
 </header>
 <!-- /wp:html -->
 
 <?php
+/**
+ * Simple fallback navigation menu
+ */
+function slviki_fallback_nav_menu() {
+	$pages = get_pages(['sort_column' => 'menu_order']);
+	if ($pages) {
+		echo '<ul class="main-nav">';
+		echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
+		foreach ($pages as $page) {
+			echo '<li><a href="' . esc_url(get_permalink($page->ID)) . '">' . esc_html($page->post_title) . '</a></li>';
+		}
+		echo '</ul>';
+	}
+}
+
 /**
  * Helper function to get social media icons
  */
